@@ -1,0 +1,31 @@
+.header
+  = link_to "#", class:"header__name-box" do
+    %b SHOPLIST.com
+  %nav.header__category-box
+    = link_to "#", class:"header__category-box__all" do
+      すべて
+    = link_to "#", class:"header__category-box__ledies" do
+      レディース
+    = link_to "#", class:"header__category-box__mens" do
+      メンズ
+   
+  %nav.header__keyword-box
+    %input.header__keyword-box__form{ :placeholder => "キーワードを入力", :type =>"search" }
+    = link_to "#", class:"header__keyword-box__btn" do
+      = icon('fas', 'search', class: "header__keyword-box__btn__icon" )
+
+  %nav.header__help-box
+    = link_to "#", class:"header__help-box__login-box" do
+      ログイン
+    .header__help-box__cart-box
+      = link_to "#", class:"header__help-box__cart-box__btn" do
+        = icon('fa', 'shopping-cart', class: "header__help-box__cart-box__btn1" )
+      = link_to "#", class:"header__help-box__cart-box__btn2" do
+        = icon('fa', 'circle',)
+      .header__help-box__cart-box__number 1
+        
+
+    .header__help-box__menu-box
+      = link_to "#", class:"header__help-box__menu-box__btn" do
+        = icon('fa', 'bars')
+    

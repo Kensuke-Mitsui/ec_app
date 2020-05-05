@@ -1,0 +1,4 @@
+@import "reset";
+@import "modules/items";  
+@import "font-awesome-sprockets";
+@import "font-awesome";//先に読み込んで欲しいファイルを上に記述していく
