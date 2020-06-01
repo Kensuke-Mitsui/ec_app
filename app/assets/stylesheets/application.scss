@@ -3,3 +3,4 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";//先に読み込んで欲しいファイルを上に記述していく
 @import "registrations/new";
+@import "layouts/error_messages"
