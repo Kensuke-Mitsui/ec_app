@@ -2,7 +2,7 @@
 .main
   %h2 新規会員登録
   = form_for(@user, url: user_registration_path) do |f| 
-    -# = render "devise/shared/error_messages", resource: resource
+    -# = render "devise/shared/error_messages", resource: @user
     .main__form
       .main__form__registration
         会員情報登録ページ
