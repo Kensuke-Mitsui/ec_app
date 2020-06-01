@@ -1,6 +1,6 @@
 .header
   = link_to "#", class:"header__name-box" do
-    %b SHOPLIST.com
+    %b EC.com
   %nav.header__category-box
     = link_to "#", class:"header__category-box__all" do
       すべて
@@ -8,15 +8,18 @@
       レディース
     = link_to "#", class:"header__category-box__mens" do
       メンズ
-   
   %nav.header__keyword-box
     %input.header__keyword-box__form{ :placeholder => "キーワードを入力", :type =>"search" }
     = link_to "#", class:"header__keyword-box__btn" do
       = icon('fas', 'search', class: "header__keyword-box__btn__icon" )
 
   %nav.header__help-box
-    = link_to "#", class:"header__help-box__login-box" do
-      ログイン
+    - if user_signed_in?
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class:"header__help-box__login-box"
+      = link_to "マイページ", "/users/#{current_user.id}", class: "header__help-box__login-box"
+    - else
+      = link_to "ログイン", new_user_session_path,  class:"header__help-box__login-box" 
+      = link_to "新規会員登録", new_user_registration_path, class: "header__help-box__login-box"
     .header__help-box__cart-box
       = link_to "#", class:"header__help-box__cart-box__btn" do
         = icon('fa', 'shopping-cart', class: "header__help-box__cart-box__btn1" )
