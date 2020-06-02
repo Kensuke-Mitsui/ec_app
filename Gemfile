@@ -70,3 +70,5 @@ gem "devise"
 gem 'rails-i18n'
 
 gem 'payjp'
+
+gem 'dotenv-rails'
