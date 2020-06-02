@@ -1,9 +1,12 @@
 .alert {
   margin-top: 10px;
-  width: 500px;
+  width: 600px;
   font-size: 14px;
   background: #FFEBE8;
   border: 2px solid #990000;
   padding: 12px;
   font-weight: bold;
+}
+.field_with_errors{
+  display: contents;
 }
