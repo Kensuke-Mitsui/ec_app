@@ -15,11 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
+      # redirect_to new_user_registration_path, flash: { error: @user.errors.full_messages } and return
     end 
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.addresses.build
-    render :new_address
+    render :new_address 
   end
 
   def new_address

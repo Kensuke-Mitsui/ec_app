@@ -9,19 +9,20 @@
 
   .header { 
     background-color: #313131;
-      height: 60px;
+      height: 80px;
       width: 100%;
-      padding: 0 180px;
+      padding: 0 250px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       
         &__name-box {
           color: #ffffff;
-          font-size: 25px;
+          font-size: 30px;
           font-family: Verdana;
           text-decoration: none;
           margin-right: 20px;
+          font-family: bold;
 
         }
 
@@ -87,12 +88,12 @@
           right: 0px;
           position: relative;
           border-radius: 8px;
-
-
           &__icon {
             display: block;
             position: absolute;
-            margin: 9px 13px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 13px;
             color: #444444;
 
@@ -105,16 +106,15 @@
       &__help-box {
         display: block;
         height: 100%;
-        width: 165px;
-        margin-left: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         &__login-box {
+          margin: 0 10px;
           display: block;
           color: #ffffff;
-          font-size: 15px;
+          font-size: 16px;
           text-decoration: none;
 
           
@@ -125,13 +125,12 @@
           align-items: center;
           position: relative;
           display: block;
-        
-         
 
           &__btn1 {
             color: #c0c0c0;
             font-size: 25px;
             text-decoration: none;
+            margin: 0 10px;
           }
 
           &__btn2 {
@@ -140,7 +139,7 @@
             font-size: 20px;
             position: absolute;
             bottom: 12px;
-            left: 17px;
+            left: 26px;
           }
 
           &__number {
@@ -149,10 +148,9 @@
             font-family: lato;
             position: absolute;
             bottom: 18px;
-            left: 23px;
+            left: 28px;
             font-size: 11px;
             display: block;
-            
           }
 
         }
@@ -163,6 +161,7 @@
           &__btn {
             color: #c0c0c0;
             font-size: 25px;
+            margin: 0 10px;
           }
 
         }
