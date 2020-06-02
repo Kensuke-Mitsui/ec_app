@@ -1,8 +1,11 @@
 class CreditCardController < ApplicationController
 
+  require "payjp"
+  before_action :set_card,only: [:delete, :show]
+
   def new
-    card = Credit_card.new(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    @card = CreditCard.new(user_id: current_user.id)
+    # redirect_to action: "show" if card.exists?
   end
 
   def pay #payjpとCardのデータベース作成。
@@ -16,13 +19,16 @@ class CreditCardController < ApplicationController
       card: params['payjp-token'],
       metadata: {user_id: current_user.id}
       ) #念の為metadataにuser_idを入れましたがなくてもOK
-      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      @card = Credit_card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
         redirect_to action: "pay"
       end
     end
+  end
+
+  def delete
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
@@ -36,4 +42,7 @@ class CreditCardController < ApplicationController
     end
   end
 
+  def set_card
+    @card = CreditCard.where(user_id: current_user.id).first
+  end
 end

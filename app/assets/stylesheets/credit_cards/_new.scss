@@ -1,0 +1,28 @@
+.main__form__field2 {
+  width: 428px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .credit-box {
+    height: 48px;
+    margin: 0 4px;
+    width: calc(30% - 2%);
+    padding: 10px 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+  }
+
+}
+
+.main__form__field__credit-image {
+  position: absolute;
+  top: 50px;
+  left: 205px;
+  height: 30px;
+  width: 120px;
+}

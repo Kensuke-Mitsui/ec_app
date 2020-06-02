@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   root to: "items#index"
-  
+  #deviseのルーティング
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
 
-
+  #
+  resources :credit_card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'credit_card#show'
+      post 'pay', to: 'credit_card#pay'
+      post 'delete', to: 'credit_card#delete'
+    end
+  end
   resources :items, only: [:index]
 end
