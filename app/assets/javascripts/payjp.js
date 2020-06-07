@@ -14,13 +14,13 @@ $(document).on('turbolinks:load', function() {
     };
     Payjp.createToken(card, function(s, response) {
       if (response.error) {
-        alert('カード情報が正しくありませんasas');
+        alert('カード情報が正しくありません');
       }
       else {
-        $(".number").removeAttr("name");
-        $(".cvc").removeAttr("name");
-        $(".exp_month").removeAttr("name");
-        $(".exp_year").removeAttr("name");
+        $("#number").removeAttr("name");
+        $("#cvc").removeAttr("name");
+        $("#exp_month").removeAttr("name");
+        $("#exp_year").removeAttr("name");
         var token = response.id;
         alert("登録が完了しました"); //確認用
         form.append($('<input type="hidden" name="payjpToken" />').val(token));
