@@ -7,7 +7,7 @@
         クレジットカード登録ページ
       .main__form__field
         %label.main__form__field__label カード番号
-        = f.text_field :card_number, name: "card_number", id: "card_number", type: "text", placeholder: '半角数字のみ', class: 'main__form__field__box', maxlength: "16"
+        = f.text_field :number, name: "number", id: "card_number", type: "text", placeholder: '半角数字のみ', class: 'main__form__field__box', maxlength: "16"
         -# =image_tag "material/credit/credit.png", class:"main__form__field__credit-image"
       .main__form__field2
         %label.main__form__field__label 有効期限

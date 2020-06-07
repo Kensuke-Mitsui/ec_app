@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   #クレジットカードのルーティング
+
   resources :credit_card, only: [:new, :show] do
     collection do
       post 'show', to: 'credit_card#show'
