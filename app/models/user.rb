@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   #アソシエーション
   has_many :addresses
-
+  has_many :credit_cards
   #バリデーション
   validates :password,           presence: true, length: {minimum: 7 }, confirmation: true
   validates :family_name,        presence: true
