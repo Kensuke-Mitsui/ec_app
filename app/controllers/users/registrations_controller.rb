@@ -20,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.addresses.build
     render :new_address 
+
   end
 
   def new_address
@@ -33,30 +34,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new_address and return
     end
     @user.addresses.build(@address.attributes)
-    session["address"] = @address.attributes
-    @creditcard = @user.credit_cards.build
-    render :new_credit_card
-    # session["devise.regist_data"]["user"].clear
-    # sign_in(:user, @user)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+    redirect_to creditcards_path #クレジットカード登録のnewアクションへ飛ばす
   end
 
   def new_credit_card
+    card = CreditCard.where(user_id: current_user.id)
+    #クレジットカードのuser_idカラムへログイン中のユーザーのidが入ったハッシュを,cardに代入。
   end
 
   require "payjp"
 
   def pay
-    @user = User.new(session["devise.regist_data"]["user"])
-    @address = Address.new(session["address"])
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjpToken'].blank? 
-      redirect_to action: "new_credit_card"
+      render :new_credit_card
     else
       customer = Payjp::Customer.create(
         card: params['payjpToken'],
       )
-      @creditcard = CreditCard.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
-      @creditcard.save
+      @creditcard = CreditCard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      if @creditcard.save
+        redirect_to root_path
+      else
+        redirect_to action: "new_credit_card"
+      end
+      # @creditcard.save
       # @creditcard = CreditCard.new(credit_card_params)
       # @creditcard = Creditcard.new(customer_id: customer.id, card_id: customer.default_card)
       # @creditcard = CreditCard.new(:customer_id)
@@ -67,13 +72,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       #   flash.now[:alert] = @creditcard.errors.full_messages
       #   render :new_credit_card and return
       # end
-      @user.addresses.build(@address.attributes)
-      if @user.save
-        sign_in(:user, @user)
-        redirect_to root_path
-      else
-        render :new_credit_card
-      end
+      # @user.credit_cards.build(customer_id: customer.id, card_id: customer.default_card)
     end
   end
 
@@ -83,9 +82,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:address).permit(:post_code, :prefecture, :city, :block, :building, :phone_number, :destination_family_name, :destination_first_name, :destination_family_name_kana, :destination_first_name_kana)
   end
 
-  def credit_card_params
-    params.permit(:user_id, :customer_id, :card_id,)
-  end
+  # def credit_card_params
+  #   params.permit(:user_id, :customer_id, :card_id,)
+  # end
 
   # GET /resource/edit
   # def edit
