@@ -2,10 +2,8 @@ $(document).on('turbolinks:load', function() {
   var form = $("#charge-form");
   Payjp.setPublicKey('pk_test_839895c840d4f91f7e75df7e');
   $(document).on("click", "#token_submit", function(e) {
-
     e.preventDefault();
     form.find("input[type=submit]").prop("disabled", true);
-
     var card = {
         number: $("#card_number").val(),
         cvc: $("#cvc").val(),
@@ -20,7 +18,7 @@ $(document).on('turbolinks:load', function() {
         $("#card_number").removeAttr("name");
         $("#cvc").removeAttr("name");
         $("#exp_month").removeAttr("name");
-        $("#exp_year").removeAttr("name");
+        $("#exp_year").removeAttr("name"); //DBに保存しないため値を削除。
         var token = response.id;
         alert("登録が完了しました"); //確認用
         form.append($('<input type="hidden" name="payjpToken"/>').val(token)); 
