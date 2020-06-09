@@ -17,13 +17,13 @@ $(document).on('turbolinks:load', function() {
         alert('カード情報が正しくありません');
       }
       else {
-        $("#number").removeAttr("name");
+        $("#card_number").removeAttr("name");
         $("#cvc").removeAttr("name");
         $("#exp_month").removeAttr("name");
         $("#exp_year").removeAttr("name");
         var token = response.id;
         alert("登録が完了しました"); //確認用
-        form.append($('<input type="hidden" name="payjpToken" />').val(token));
+        form.append($('<input type="hidden" name="payjpToken"/>').val(token)); 
         form.get(0).submit();
       }
     });
