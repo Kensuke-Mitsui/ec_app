@@ -1,66 +1,33 @@
 $(document).on('turbolinks:load', function() {
-  var form = $("#charge-form");
-  Payjp.setPublicKey('pk_test_839895c840d4f91f7e75df7e');
-  $(document).on("click", "#token_submit", function(e) {
-    e.preventDefault();
+  var form = $("#charge-form"); //id”charge-form”のものをformに代入します。
+  Payjp.setPublicKey('pk_test_839895c840d4f91f7e75df7e'); //公開鍵を直書き、して参照できる様にします。
+  $(document).on("click", "#token_submit", function(e) { //eが押されたときに作動します。
+    e.preventDefault(); //まずrailsの処理を止めて、jsの処理を先に行います。
     form.find("input[type=submit]").prop("disabled", true);
-    var card = {
+    var card = { //card変数に、入力されたクレジットカード情報をidを元に取得して、card変数に代入します。。
         number: $("#card_number").val(),
         cvc: $("#cvc").val(),
         exp_month: $("#exp_month").val(),
         exp_year: $("#exp_year").val(),
     };
-    Payjp.createToken(card, function(s, response) {
-      if (response.error) {
+    Payjp.createToken(card, function(s, response) {  // トークンを生成。先ほどのcard情報がトークンという暗号化したものとして返ってくる
+      if (response.error) { //値がエラーであった場合
         alert('カード情報が正しくありません');
       }
-      else {
+      else { //エラーが出なかった場合
         $("#card_number").removeAttr("name");
         $("#cvc").removeAttr("name");
         $("#exp_month").removeAttr("name");
         $("#exp_year").removeAttr("name"); //DBに保存しないため値を削除。
         var token = response.id;
-        alert("登録が完了しました"); //確認用
-        form.append($('<input type="hidden" name="payjpToken"/>').val(token)); 
-        form.get(0).submit();
+        alert("登録が完了しました"); 
+        form.append($('<input type="hidden" name="payjpToken"/>').val(token)); //dbにトークンを保存するのでformにjsで作ったトークンを挿入している。
+        form.get(0).submit(); //formの先ほど挿入したデータをgetsしています。
       }
     });
   });
 });
 
-// document.addEventListener(
-//   "DOMContentLoaded", e => {
-//     if (document.getElementById("token_submit") != null) { //token_submitというidがnullの場合、下記コードを実行しない
-//       Payjp.setPublicKey('pk_test_839895c840d4f91f7e75df7e'); //ここに公開鍵を直書き
-//       let btn = document.getElementById("token_submit"); //IDがtoken_submitの場合に取得されます
-//       btn.addEventListener("click", e => { //ボタンが押されたときに作動します
-//         e.preventDefault(); //ボタンを一旦無効化します
-//         let card = {
-//           number: document.getElementById("card_number").value,
-//           cvc: document.getElementById("cvc").value,
-//           exp_month: document.getElementById("exp_month").value,
-//           exp_year: document.getElementById("exp_year").value
-//         }; //入力されたデータを取得します。
-//         Payjp.createToken(card, (status, response) => {
-//           if (status === 200) { //成功した場合
-//             $("#card_number").removeAttr("name");
-//             $("#cvc").removeAttr("name");
-//             $("#exp_month").removeAttr("name");
-//             $("#exp_year").removeAttr("name"); //データを自サーバにpostしないように削除
-//             $("#card_token").append(
-//               $('<input type="hidden" name="payjp-token">').val(response.id)
-//             ); //取得したトークンを送信できる状態にします
-//             document.inputForm.submit();
-//             alert("登録が完了しました"); //確認用
-//           } else {
-//             alert("カード情報が正しくありません。"); //確認用
-//           }
-//         });
-//       });
-//     }
-//   },
-//   false
-// );
 
 // document.addEventListener(
 //   "DOMContentLoaded", e => {

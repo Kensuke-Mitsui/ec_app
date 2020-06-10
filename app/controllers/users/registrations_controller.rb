@@ -45,16 +45,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #クレジットカードのuser_idカラムへログイン中のユーザーのidが入ったハッシュを,cardに代入。
   end
 
-  require "payjp"
+  require "payjp" #APIキーを取得できる様に許可。
 
   def pay
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"] #payjpから送られてくる値を取得するために、秘密鍵で認証しています。
     if params['payjpToken'].blank? 
-      render :new_credit_card
+      render :new_credit_card #JSで作成したpayjpTokenがからの場合、やり直し。
     else
-      customer = Payjp::Customer.create(
-        card: params['payjpToken'],
-      )
+      customer = Payjp::Customer.create(card: params['payjpToken'],) #customer変数に取得した値を代入しています。
       @creditcard = CreditCard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @creditcard.save
         redirect_to root_path

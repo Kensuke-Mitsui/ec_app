@@ -1,6 +1,6 @@
 class CreditCard < ApplicationRecord
-  belongs_to :user, optional: true
-
+  #アソシエーション
+  belongs_to :user
 
   #バリデーション
   validates :user_id, :customer_id, :card_id, presence: true
