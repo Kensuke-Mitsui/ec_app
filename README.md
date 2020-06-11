@@ -1,25 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##概要
+Ruby on Railsの勉強として、ECサイトをポートフォリオで作成しています。
 
-Things you may want to cover:
+##開発環境
+・Ruby 2.5.1
 
-* Ruby version
+・Rails 5.2.4.2
 
-* System dependencies
+##使用言語
+・haml/scss/ruby(ruby on rails)/js(jquery)/
 
-* Configuration
+##実装機能
+###ユーザー関連
+・新規登録機能
+・ログイン/ログアウト機能
+・例外処理
+deviseを使用しています。registarationコントローラを作成して、ユーザー情報のみでなく
+商品送付先情報やクレジットの登録もできる様に実装しています。
 
-* Database creation
+####今後実装機能
+・編集機能
+・登録情報確認ページ
+・APIを用いたSNS認証、登録機能
 
-* Database initialization
+###クレジットカード関連
+・カード登録機能
 
-* How to run the test suite
+ クレジットカードの決済サービスpay.jpを用いて実装しています。
 
-* Services (job queues, cache servers, search engines, etc.)
+ ####今後の実装機能
+ .購入機能
+ .削除機能
+ .確認及び編集機能
 
-* Deployment instructions
+###商品関連
 
-* ...
+まだ未実装の段階です。
+まずは商品を購入できる様実装し、その次にカテゴリー順に表示される様に実装する予定です。
 
+##その他
+データベースはmysqlを使用しています。
+サーバーはAWSを使用しており、
+EC2インスタンスを作成してcapistrano用いてデプロイしています。
