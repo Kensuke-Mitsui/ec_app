@@ -86,3 +86,5 @@ gem 'active_hash'
 
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+# rails s実行時の (ExecJS::RuntimeUnavailable)エラーに対しての処理
+gem 'mini_racer'
