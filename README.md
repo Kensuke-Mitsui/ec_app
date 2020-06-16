@@ -1,10 +1,11 @@
-# README
+## アプリ名
+ec_app
 
 ## 概要
 Ruby on Railsの勉強としてのポートフォリオとなります。
 
-ECサイトに関心が強く現在ポートフォリオとして作成しています。
-
+ECサイトに関心があり、学んだ技術を使用して現在ポートフォリオとして作成しています。(現在は新規登録/ログイン、pay.jpへの登録機能のみ実装完了しています。)
+制作完了の定義としては、サイトを通して商品を購入できるところまでとしています。
 ## 開発環境
 ・Ruby 2.5.1
 
@@ -12,6 +13,18 @@ ECサイトに関心が強く現在ポートフォリオとして作成してい
 
 ## 使用言語
 ・haml/scss/ruby(ruby on rails)/js(jquery)/
+
+
+http://54.250.10.26/
+
+## 本番環境
+### URl
+http://54.250.10.26/
+
+### testアカウント（ログイン用）
+アドレス test@gmail.com
+
+パスワード 0000000
 
 ## 実装機能
 ### ユーザー関連
@@ -45,9 +58,54 @@ deviseを使用しています。registarationコントローラを作成して�
 
 まだ未実装の段階です。
 
-まずは商品を購入できる様実装し、その次にカテゴリー順に表示される様に実装する予定です。
+まずは商品を選んで購入できる様実装し、その次にカテゴリー順に表示される様に実装する予定です。
 
 ## その他
 データベースはmysqlを使用しています。  
-サーバーはAWSを使用しており、
-EC2インスタンスを作成してcapistrano用いてデプロイしています。
+サーバーはAWSのEC2を使用しており、
+capistrano用いて自動デプロイできる様にしています。
+
+## DB設計
+### usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|email|string|null: false, unique: true, index: true|
+|encrypted_password|string|null: false|
+|family_name|string|null: false|
+|first_name|string|null: false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|gender|string|null: false|
+|birthday|date|null: false|
+#### Association
+- has_many :addresses
+- has_many :credit_cards
+
+### addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post_code|integer(7)|null: false|
+|prefecture|string|null: false|
+|city|string|null: false|
+|block|string|null: false|
+|building|string|
+|phone_number|string| numericality: { only_integer: true }, allow_blank: true|
+|user_id|references|null: false, foreign_key: true|
+|destination_family_name|string|
+|destination_first_name|string|
+|destination_family_name_kana|string|
+|destination_first_name_kana|string|
+#### Association
+- belongs_to :user
+
+## credit_cardsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
+### Association
+- belongs_to :user
+
+## itemsテーブル
+
