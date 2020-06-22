@@ -45,6 +45,8 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  #ダミーデータを作るジェム
+  gem 'faker'
 end
 
 group :development do
@@ -88,3 +90,9 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 # rails s実行時の (ExecJS::RuntimeUnavailable)エラーに対しての処理
 gem 'mini_racer'
+# モデルでカラム名を確認できるジェム
+gem'annotate_models'
+#画像アップロードをできる様にするジェム
+gem "carrierwave"
+#画像の大きさを調節
+gem 'mini_magick'

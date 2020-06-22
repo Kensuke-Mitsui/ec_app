@@ -1,0 +1,22 @@
+.content
+  %h2 商品一覧
+  .content__product-box
+    .content__product-box__left
+      %h3 カテゴリーから探す
+      %ul
+        %li 
+          = link_to "トップス", url: "#"
+        %li  
+          = link_to "ズボン", url: "#"
+    .content__product-box__right
+      - @products.each do |product|
+        .content__product-box__right__product
+        = link_to product_path(product.id) do
+          .content__product-box__right__product__image
+            = image_tag ("#{product.images.first.image}")
+            -#uploderで画像を調節。
+          .content__product-box__right__product__name
+            = product.name
+          .content__product-box__right__product__price
+            = "#{product.price.to_s(:deliimited, delimiter: ',')}円(税込み）"
+            -#↑3けた区切りが反映されていない

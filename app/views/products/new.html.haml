@@ -1,0 +1,16 @@
+%h2
+  新規商品の追加
+= form_for(@product, url: products_path) do |p| 
+  %p
+    = p.text_field :name, placeholder: "商品名"
+  %p
+    = p.text_field :description, type:"textarea", placeholder: "商品詳細"
+  %p
+    = p.number_field  :price, placeholder: "値段"
+  -# = f.text_field :name, placeholder: "通貨単位"
+  = p.fields_for :images do |image|
+    =image.file_field :image, type: "file"
+  %p
+    = p.submit "商品登録", url: "products_path"
+
+

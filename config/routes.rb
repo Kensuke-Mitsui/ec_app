@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
 
-  root to: "items#index"
+  root to: "products#index"
+
   #deviseのルーティング
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -23,5 +24,7 @@ Rails.application.routes.draw do
   #     post 'delete', to: 'credit_card#delete'
   #   end
   # end
-  resources :items, only: [:index]
+
+  #productのルーティング
+  resources :products, only: [:new, :create, :show]
 end

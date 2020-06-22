@@ -1,0 +1,26 @@
+= render partial: "products/header"
+%h2 商品詳細
+.product-area
+  .product-area__left
+    = image_tag ("#{@product.images.first.image}")
+  .product-area__right
+    .product-area__right__name-box
+      %b
+        ・商品名 :
+      .product-area__right__name-box__name
+        = @product.name
+    %hr
+    .product-area__right__description-box
+      %b
+        ・商品説明
+      .product-area__right__description-box__description
+        = @product.description
+    .product-area__right__price-box
+      %b
+        ・値段 :
+      .product-area__right__price-box__price
+        = "#{@product.price.to_s(:deliimited, delimiter: ',')}円(税込み）"
+    %hr
+    .product-area__right__btn-box
+      = link_to "#", class: "product-area__right__btn-box__btn" do
+        購入する
