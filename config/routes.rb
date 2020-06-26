@@ -26,5 +26,15 @@ Rails.application.routes.draw do
   # end
 
   #productのルーティング
-  resources :products, only: [:new, :create, :show]
+  resources :products, only: [:new, :create, :show] do
+    resources :orders, only: [:index] do
+      collection do
+        post 'pay', to: 'orders#pay'
+        get 'done', to: 'orders#done'
+      end
+    end
+  end
+
+
+  #order(注文)のルーティング
 end

@@ -1,0 +1,92 @@
+= render partial: "products/header"
+.content
+  %h2 購入確認
+  .any-box
+    .any-box__any
+      購入内容の確認
+    %hr
+    .any-box__product
+      .any-box__product__left
+        = image_tag ("#{@product.images.first.image}"), class:"product-image"
+      .any.any-box__product__right
+        %br
+        %br
+        %br
+        %p
+          = @product.name
+        %br
+        %p
+          = "#{@product.price.to_s(:deliimited, delimiter: ',')}円(税込み）"
+    %hr
+    .any-box__creditcard
+      .any-box__creditcard__left
+        %p
+          支払い方法 :
+        %br
+        %p
+          カード番号 :
+        %br
+        %p
+          有効期限 :
+      .any-box__creditcard__center
+        %p 
+          クレジットカード
+        %br
+          ="**** **** ****" + @default_card_information.last4
+        %br
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year + "(年)"
+      .any-box__creditcard__right
+        %br
+        %br
+        %br
+        %br
+          .any-box__creditcard__right__text
+            = link_to "支払い方法変更の方はこちら", url: "#"
+    %hr 
+      .any-box__address 
+        .any-box__address__left
+          %p
+            送付先
+          %br
+          %ul
+            %li
+              ="〒 " + @address.post_code.to_s
+            %br
+            %li
+              = @address.prefecture
+              = @address.city
+            %li
+              = @address.block
+            %li
+              = @address.building   
+        .any-box__address__center 
+          %p
+            送付先氏名
+          %br 
+          %ul
+            %br
+            %br
+            %li
+              = @address.destination_family_name  
+              = @address.destination_first_name + " 様"
+        .any-box__address__right
+          .any-box__creditcard__right__text
+            %br
+            %br
+            %br
+            %br
+            %br
+            %br
+            = link_to "送付先、氏名変更の方はこちら", url: "#"
+    %hr
+      .any-box__buy
+        = form_tag(action: :pay, method: :post) do
+          %button{type:'submit', class:"any-box__buy__btn"}
+            購入する
+        -# = submit_tag("購入する", class:"any-box__buy__btn", action: :pay, method: :post )
+        -# = link_to "#", class:"any-box__buy__btn" do
+        -#   購入する
+= render partial: 'products/footer'
+          

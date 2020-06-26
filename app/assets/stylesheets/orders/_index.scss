@@ -1,0 +1,84 @@
+.any-box {
+  width: 80%;
+  background-color: #eeeeee;
+  padding: 20px 80px 30px 80px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  &__any {
+    font-size: 26px;
+    text-align: center;
+    padding-bottom: 12px;
+
+  }
+  &__product {
+    display: flex;
+    padding: 20px 50px;
+    &__left {
+      width: 50%;
+      margin: 0 auto;
+      .product-image {
+        height: 100px;
+        width: 100px;
+      }
+    }
+    &__right {
+      width: 50%;
+    }
+  }
+  &__creditcard {
+    padding: 20px 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      padding-left: 10px;
+    }
+    &__center {
+      padding-left: 10px;
+    }
+    &__right {
+      &__text {
+        // color: #3CCACE;
+      }
+    }
+  }
+  &__address {
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      p {
+      font-size: 20px;
+      font-family: bold;
+      // border-bottom: solid 1px;
+      }
+      ul {
+        padding-left: 10px;
+      }
+    }
+    &__center {
+      p {
+        font-size: 20px;
+        font-family: bold;
+        // border-bottom: solid 1px;
+        }
+        ul {
+          padding-left: 10px;
+        }
+    }
+    &__right {
+    }
+  }
+  &__buy {
+    padding: 20px 50px 0 50px;
+    text-align: right;
+    &__btn {
+      font-size: 20px;
+      background-color: #2dac9a;
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 8px;
+      border: solid 1px #000000;
+    } 
+  }
+}

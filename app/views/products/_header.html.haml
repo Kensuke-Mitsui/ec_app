@@ -16,7 +16,8 @@
   %nav.header__help-box
     - if user_signed_in?
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class:"header__help-box__login-box"
-      = link_to "マイページ", "/users/#{current_user.id}", class: "header__help-box__login-box"
+      -# = link_to "マイページ", "/users/#{current_user.id}", class: "header__help-box__login-box"
+      = link_to "マイページ", "#", class: "header__help-box__login-box"
     - else
       = link_to "ログイン", new_user_session_path,  class:"header__help-box__login-box" 
       = link_to "新規会員登録", new_user_registration_path, class: "header__help-box__login-box"

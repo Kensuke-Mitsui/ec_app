@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     #productモデルに紐ずいたimageモデルの画像を引っ張る。
     # @products = Product.includes(:images).order('created_at DESC')
     # @products = Product.all.includes(:images).order('created_at DESC')
-    @products = Product.all.order(created_at: :desc)
+    @products = Product.all.order(created_at: :desc).limit(6)
   end
 
   def new
@@ -26,12 +26,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+      @product = Product.find(params[:id])
   end
 
   private
   def product_params
     params.require(:product).permit(:name, :description, :price, :unit, images_attributes: [:image, :item_id])
   end
+
 end
 

@@ -1,5 +1,5 @@
 = render partial: "products/header"
-%h2 商品詳細
+%h1 商品詳細
 .product-area
   .product-area__left
     = image_tag ("#{@product.images.first.image}")
@@ -17,10 +17,10 @@
         = @product.description
     .product-area__right__price-box
       %b
-        ・値段 :
+        ・価格 :
       .product-area__right__price-box__price
         = "#{@product.price.to_s(:deliimited, delimiter: ',')}円(税込み）"
     %hr
     .product-area__right__btn-box
-      = link_to "#", class: "product-area__right__btn-box__btn" do
-        購入する
+      = link_to product_orders_path(@product.id), class: "product-area__right__btn-box__btn" do
+        商品購入に進む
