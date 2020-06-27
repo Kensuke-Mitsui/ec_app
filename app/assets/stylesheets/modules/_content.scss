@@ -33,16 +33,13 @@
     }
     &__right {
       margin-left: 20px;
-      width: 800px;
+      margin-top: 46px;
       display: flex;
       a {
         text-decoration: none;
         color: #000000;
+        margin-left: 20px;
       }
-      &__product {
-        margin-right: 20px;
-        width: 18%;
-        background-color: #ffffff;
         &__image {
         }
         &__name {
@@ -53,8 +50,6 @@
           color :red;
           font-size: 12px;
         }
-  
-      }
     }
   }
 }
