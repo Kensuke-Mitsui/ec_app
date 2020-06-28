@@ -2,8 +2,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
 
-  storage :file
-  # storage :fog
+  case Rails.env
+    when 'production'
+      storage :fog
+    when 'development'
+      storage :file
+    when 'staging'
+      storage :fog
+  end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
