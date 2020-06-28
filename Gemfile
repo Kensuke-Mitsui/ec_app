@@ -96,3 +96,5 @@ gem'annotate_models'
 gem "carrierwave"
 #画像の大きさを調節
 gem 'mini_magick'
+#AWSをを利用してs3に画像を保存できる様にするジェム
+gem 'fog-aws'
